@@ -1,0 +1,103 @@
+import React from 'react';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar } from 'recharts';
+
+const CostAnalysisCharts = () => {
+  const industryData = [
+    {
+      year: '2021',
+      rawMaterialRatio: 77.70,
+      processingRatio: 22.30,
+      rawMaterialAmount: 152810.87,
+      processingAmount: 43863.80
+    },
+    {
+      year: '2022',
+      rawMaterialRatio: 84.42,
+      processingRatio: 15.58,
+      rawMaterialAmount: 215395.46,
+      processingAmount: 39777.51
+    },
+    {
+      year: '2023',
+      rawMaterialRatio: 84.42,
+      processingRatio: 15.58,
+      rawMaterialAmount: 215395.46,
+      processingAmount: 39777.51
+    }
+  ];
+
+  const productData = [
+    {
+      year: '2021',
+      interconnectRawMaterial: 69396.91,
+      interconnectProcessing: 43490.49,
+      serverRawMaterial: 83413.96,
+      serverProcessing: 373.31
+    },
+    {
+      year: '2022',
+      interconnectRawMaterial: 161590.91,
+      interconnectProcessing: 27645.07,
+      serverRawMaterial: 53804.54,
+      serverProcessing: 978.89
+    },
+    {
+      year: '2023',
+      interconnectRawMaterial: 161590.91,
+      interconnectProcessing: 27645.07,
+      serverRawMaterial: 53804.54,
+      serverProcessing: 978.89
+    }
+  ];
+
+  return (
+    <div className="space-y-8">
+      <Card className="w-full">
+        <CardHeader>
+          <CardTitle>集成电路行业成本结构比例变化</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="h-80">
+            <ResponsiveContainer width="100%" height="100%">
+              <LineChart data={industryData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="year" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line type="monotone" dataKey="rawMaterialRatio" name="原材料占比" stroke="#8884d8" />
+                <Line type="monotone" dataKey="processingRatio" name="加工成本占比" stroke="#82ca9d" />
+              </LineChart>
+            </ResponsiveContainer>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card className="w-full">
+        <CardHeader>
+          <CardTitle>产品成本构成变化趋势</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="h-80">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart data={productData}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="year" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="interconnectRawMaterial" name="互连类芯片-原材料" fill="#8884d8" />
+                <Bar dataKey="interconnectProcessing" name="互连类芯片-加工" fill="#82ca9d" />
+                <Bar dataKey="serverRawMaterial" name="津逮服务器-原材料" fill="#ffc658" />
+                <Bar dataKey="serverProcessing" name="津逮服务器-加工" fill="#ff7300" />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
+
+export default CostAnalysisCharts;
